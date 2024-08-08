@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import styles from "../Register/index.module.css";
+import styles from "../Login/index.module.css";
 import imag1 from "../Register/img1.png";
 import imag2 from "../Register/img2.png";
 import { useNavigate } from "react-router-dom";
@@ -35,27 +35,13 @@ function Register() {
       password: passwordRef.current.value,
     };
 
-    fetch("https://api.escuelajs.co/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.statusCode === 400) {
-          setErrors([data.message]);
-        } else {
-          console.log("Success:", data);
-          localStorage.setItem("token", data.access_token);
-          navigate("/");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        setErrors(["An error occurred. Please try again later."]);
-      });
+
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    storedUsers.push(user);
+    localStorage.setItem("users", JSON.stringify(storedUsers));
+
+    console.log("User data saved:", user);
+    navigate("/"); 
   }
 
   function handleRegister(event) {

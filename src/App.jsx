@@ -27,8 +27,11 @@ function App() {
   )
   return (
     <div>
+   
       {
+      
         <Routes>
+         
           <Route path='/login' element={<Login></Login>}></Route>
           <Route path='/register' element={<Register></Register>}></Route>
           isAuth && {' '}
