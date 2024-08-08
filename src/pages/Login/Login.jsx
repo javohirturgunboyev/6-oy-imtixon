@@ -13,10 +13,10 @@ function Register() {
   function validate() {
     const errors = [];
     if (!emailRef.current.value) {
-      errors.push("Email is required");
+      errors.push("Email shart va majburiy");
     }
     if (!passwordRef.current.value) {
-      errors.push("Password is required");
+      errors.push("Password shart va majburiy");
     }
     return errors;
   }
